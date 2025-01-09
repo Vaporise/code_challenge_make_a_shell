@@ -4,8 +4,8 @@ import sys
 def main():
 
     commands = ["paper", "rock", "scissors"]
-    builtins = ["echo", "exit", "type"]
-    #Uncomment this block to pass the first stage
+    # builtins = ["echo", "exit", "type"] due to code change no longer needed
+
     while True: 
         sys.stdout.write("$ ")
 
