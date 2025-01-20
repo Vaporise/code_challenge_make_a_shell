@@ -6,12 +6,7 @@ def main():
 
     commands = ["paper", "rock", "scissors"]
     # builtins = ["echo", "exit", "type"] due to code change no longer needed
-
     path_dirs = os.environ.get("PATH", "").split(":")
-    if "/bin" not in path_dirs:
-        path_dirs.append("/bin")
-    if "/usr/bin" not in path_dirs:
-        path_dirs.append("/usr/bin")
 
     while True: 
         sys.stdout.write("$ ")
@@ -23,12 +18,9 @@ def main():
             print(f"{inp}: command found")
         elif inp.startswith("type "): #check if command starts with type for using the type command
             target = inp[5:] #ignores the first 5 characters (type ) and assigns all the string after.
-            if target == "echo": 
-                sys.stdout.write("echo is a shell builtin\n")
-            elif target == "exit":
-                sys.stdout.write("exit is a shell builtin\n")
-            elif target == "type":
-                sys.stdout.write("type is a shell builtin\n")
+            if target in ["echo", "exit", "type"]:
+                sys.stdout.write(f"{target} is a shell builtin\n")
+            else:
 
                 found = False
                 for directory in path_dirs:
@@ -39,10 +31,6 @@ def main():
                         break
                 if not found:
                     sys.stdout.write(f"{target}: not found\n")
-
-            else: 
-                sys.stdout.write(f"{target}: not found\n")
-
 
         elif inp.startswith("echo "): #if the input starts with echo
             sys.stdout.write(inp[5:] + "\n") #skip the first 5 letters and then print.
